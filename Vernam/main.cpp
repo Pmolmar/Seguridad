@@ -42,7 +42,7 @@ int main()
                 break;
 
             default:
-                std::cout << "Opcion no soportada.";
+                std::cout << "Opcion no soportada." << std::endl;
                 break;
             }
         }
