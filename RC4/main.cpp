@@ -16,7 +16,6 @@ void ksa(std::vector<int> &S, std::string &str)
         S[i] = i;
         K[i] = str[i % str.length()];
     }
-    std::cout << K[0];
 
     for (size_t i = 0; i < SIZE; i++)
     {
@@ -27,7 +26,7 @@ void ksa(std::vector<int> &S, std::string &str)
 
 int prga(std::vector<int> &S, int &i, int &j)
 {
-    i = i + 1 % SIZE;
+    i = (i + 1) % SIZE;
     j = (j + S[i]) % SIZE;
     std::swap(S[i], S[j]);
 
@@ -43,7 +42,7 @@ std::string cifrar(std::vector<int> &S, std::string &str)
     for (size_t k = 0; k < str.length(); k++)
     {
         char x = prga(S, i, j);
-        aux[i] = str[i] ^ x;
+        aux[k] = str[k] ^ x;
     }
     
     return aux;
@@ -60,6 +59,8 @@ int main(int argc, char const *argv[])
 
     std::default_random_engine rd(seed);
     const int key = rd();
+
+    str.clear();
 
     std::cout << "Introduzca un mensaje: ";
     std::getline(std::cin, str);
