@@ -55,23 +55,26 @@ int main(int argc, char const *argv[])
 
     std::cout << "Introduzca una semilla: ";
     std::getline(std::cin, str);
-    std::seed_seq seed(str.begin(), str.end());
-
-    std::default_random_engine rd(seed);
-    const int key = rd();
+    
+    // std::seed_seq seed(str.begin(), str.end());
+    // std::default_random_engine rd(seed);
+    // const int key = rd();
+    
+    std::string aux = str;
+    ksa(S, aux);
 
     str.clear();
 
     std::cout << "Introduzca un mensaje: ";
     std::getline(std::cin, str);
 
-    std::string aux = std::to_string(key);
-    ksa(S, aux);
     str = cifrar(S, str);
     std::cout << "Mensaje cirfrado: ";
     for (int i = 0; i < str.length(); i++)
     {
-        std::cout << std::hex << std::bitset<8>(str[i]).to_ulong();
+        // std::cout << std::hex << std::bitset<8>(str[i]).to_ulong() << "-";
+        std::cout << str[i] << "-";
+
     }
 
     std::cout << std::endl;
