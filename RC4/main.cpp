@@ -16,7 +16,6 @@ void ksa(std::vector<int> &S, std::string &str)
         S[i] = i;
         K[i] = str[i % str.length()];
     }
-    std::cout << K[0];
 
     for (size_t i = 0; i < SIZE; i++)
     {
@@ -27,7 +26,7 @@ void ksa(std::vector<int> &S, std::string &str)
 
 int prga(std::vector<int> &S, int &i, int &j)
 {
-    i = i + 1 % SIZE;
+    i = (i + 1) % SIZE;
     j = (j + S[i]) % SIZE;
     std::swap(S[i], S[j]);
 
@@ -43,7 +42,7 @@ std::string cifrar(std::vector<int> &S, std::string &str)
     for (size_t k = 0; k < str.length(); k++)
     {
         char x = prga(S, i, j);
-        aux[i] = str[i] ^ x;
+        aux[k] = str[k] ^ x;
     }
     
     return aux;
@@ -56,21 +55,26 @@ int main(int argc, char const *argv[])
 
     std::cout << "Introduzca una semilla: ";
     std::getline(std::cin, str);
-    std::seed_seq seed(str.begin(), str.end());
+    
+    // std::seed_seq seed(str.begin(), str.end());
+    // std::default_random_engine rd(seed);
+    // const int key = rd();
+    
+    std::string aux = str;
+    ksa(S, aux);
 
-    std::default_random_engine rd(seed);
-    const int key = rd();
+    str.clear();
 
     std::cout << "Introduzca un mensaje: ";
     std::getline(std::cin, str);
 
-    std::string aux = std::to_string(key);
-    ksa(S, aux);
     str = cifrar(S, str);
     std::cout << "Mensaje cirfrado: ";
     for (int i = 0; i < str.length(); i++)
     {
-        std::cout << std::hex << std::bitset<8>(str[i]).to_ulong();
+        // std::cout << std::hex << std::bitset<8>(str[i]).to_ulong() << "-";
+        std::cout << str[i] << "-";
+
     }
 
     std::cout << std::endl;
