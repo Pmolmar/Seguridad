@@ -9,15 +9,15 @@ void lsfr(std::bitset<bitsetsize> &p)
     std::bitset<1> at;
 
     if (p.size() == 25)
-        at = p[7] ^ p[11] ^ p[19] ^ p[24];
+        at = p[17] ^ p[13] ^ p[5] ^ p[0];
     if (p.size() == 31)
-        at = p[11] ^ p[16] ^ p[23] ^ p[30];
+        at = p[19] ^ p[15] ^ p[7] ^ p[0];
     if (p.size() == 33)
-        at = p[3] ^ p[23] ^ p[27] ^ p[32];
+        at = p[29] ^ p[9] ^ p[5] ^ p[0];
     if (p.size() == 39)
-        at = p[3] ^ p[27] ^ p[35] ^ p[38];
-    p <<= 1;
-    p[0] = at[0];
+        at = p[35] ^ p[11] ^ p[3] ^ p[0];
+    p >>= 1;
+    p[p.size()-1] = at[0];
 };
 
 std::bitset<1> desplazamiento(std::bitset<25> &p1, std::bitset<31> &p2, std::bitset<33> &p3, std::bitset<39> &p4, std::bitset<2> &R)
@@ -51,14 +51,10 @@ std::bitset<1> desplazamiento(std::bitset<25> &p1, std::bitset<31> &p2, std::bit
 
 int main(int argc, char const *argv[])
 {
-    // std::bitset<25> reg_first(std::string("0111111111111111111111111"));                //p=8+12+20+25
-    // std::bitset<31> reg_second(std::string("0111111111111111111111111111111"));         //p=12+16+24+31
-    // std::bitset<33> reg_third(std::string("011111111111111111111111111111111"));        //p=4+24+28+33
-    // std::bitset<39> reg_fourth(std::string("010101010101010101010101010101010101010")); //p=4+28+36+39
-    std::bitset<25> reg_first(std::string("0100001111000000000001111"));                //p=8+12+20+25
-    std::bitset<31> reg_second(std::string("0111111111111111111111100011111"));         //p=12+16+24+31
-    std::bitset<33> reg_third(std::string("011111111111111111111111111011111"));        //p=4+24+28+33
-    std::bitset<39> reg_fourth(std::string("010000000000000000000000000000000101010")); //p=4+28+36+39
+    std::bitset<25> reg_first(std::string("0111111111111111111111111"));                //p=8+12+20+25
+    std::bitset<31> reg_second(std::string("0111111111111111111111111111111"));         //p=12+16+24+31
+    std::bitset<33> reg_third(std::string("011111111111111111111111111111111"));        //p=4+24+28+33
+    std::bitset<39> reg_fourth(std::string("010101010101010101010101010101010101010")); //p=4+28+36+39
 
     std::bitset<2> R1(std::string("01"));
 
